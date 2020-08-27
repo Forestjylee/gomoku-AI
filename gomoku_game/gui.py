@@ -93,7 +93,7 @@ USER, AI = 1, 0
 
 score_level = [0, 1, 10, 100, 1000, 10000, 100000, 1000000, 1000000]
 # font_name = pygame.font.match_font('华文黑体')
-font_name = pygame. font.get_default_font() 
+font_name = pygame.font.get_default_font() 
 
 
 def draw_text(surf, text, size, x, y, color=WHITE):
