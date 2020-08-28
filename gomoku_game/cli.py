@@ -11,6 +11,7 @@ def help():
     pt.add_row(["q/quit", "-", "Quit game"])
     print(pt)
 
+
 def main():
     gameover = True
     while True:

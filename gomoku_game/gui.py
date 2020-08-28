@@ -28,6 +28,7 @@ USER, AI = 1, 0
 
 def main():
     pygame.init()
+    pygame.mixer.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Gomoku")
     clock = pygame.time.Clock()
