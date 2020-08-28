@@ -9,7 +9,7 @@ class Gomoku(object):
     WHITE = 1
     BLACK = 2
 
-    def __init__(self, rows, cols, win_pieces):
+    def __init__(self, rows, cols, win_pieces=5):
         self.__rows = rows
         self.__cols = cols
         self.__win_pieces = win_pieces
