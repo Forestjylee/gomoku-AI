@@ -56,12 +56,11 @@ def main():
             movements = []
             color_matrix = empty_color_matrix()
 
-        # 设置屏幕刷新频率
+        # set FPS
         clock.tick(FPS)
 
-        # 处理不同事件
+        # handle events
         for event in pygame.event.get():
-            # 检查是否关闭窗口
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -76,7 +75,6 @@ def main():
         all_sprites.update()
 
         # Draw / render
-        # screen.fill(BLACK)
         all_sprites.draw(screen)
         draw_background(screen, background, back_rect)
         draw_movements(screen, movements)
@@ -94,13 +92,13 @@ def empty_color_matrix():
     return color_matrix
 
 
-# draw background lines
+# draw board
 def draw_background(surf, background, back_rect):
-    # 加载背景图片
+    # load background image
     surf.blit(background, back_rect)
     
-    # 画网格线，棋盘为 BOARD_SIZE-1行 BOARD_SIZE-1列的
-    # 1. 画出边框
+    # BOARD_SIZE-1 rows BOARD_SIZE-1 cols
+    # draw edges
     rect_lines = [
         ((GRID_WIDTH, GRID_WIDTH), (GRID_WIDTH, HEIGHT - GRID_WIDTH)),
         ((GRID_WIDTH, GRID_WIDTH), (WIDTH - GRID_WIDTH, GRID_WIDTH)),
@@ -112,6 +110,7 @@ def draw_background(surf, background, back_rect):
     for line in rect_lines:
         pygame.draw.line(surf, BLACK, line[0], line[1], 2)
 
+    # draw grid lines
     for i in range(BOARD_SIZE-2):
         pygame.draw.line(surf, BLACK,
                          (GRID_WIDTH * (2 + i), GRID_WIDTH),
@@ -120,6 +119,7 @@ def draw_background(surf, background, back_rect):
                          (GRID_WIDTH, GRID_WIDTH * (2 + i)),
                          (HEIGHT - GRID_WIDTH, GRID_WIDTH * (2 + i)))
 
+    # draw black center point
     circle_center = [
         (GRID_WIDTH * (BOARD_SIZE // 5), GRID_WIDTH * (BOARD_SIZE // 5)),
         (WIDTH - GRID_WIDTH * (BOARD_SIZE // 5), GRID_WIDTH * (BOARD_SIZE // 5)),
@@ -163,7 +163,7 @@ def move(surf, pos, clock, movements, color_matrix):
 
     pos = (grid[0] * GRID_WIDTH, grid[1] * GRID_WIDTH)
 
-    if color_matrix[grid[0]-1][grid[1]-1] is not None:
+    if grid[0] == BOARD_SIZE or grid[1] == BOARD_SIZE or color_matrix[grid[0]-1][grid[1]-1] is not None:
         return None
 
     curr_move = (pos, BLACK)
